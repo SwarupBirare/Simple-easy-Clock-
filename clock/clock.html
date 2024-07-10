@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>DIGITAL CLOCK</title>
+
+	<style>
+		body{
+
+			background-image: url("bg.jpg");
+			background-size: cover;
+
+		}
+		.Clock{
+			position: absolute;
+			color: red;
+			top: 30%;
+			left: 50%;
+			transform: translate(-50%, -50%); //moves the element up and to the left by half of its own width and height
+			font-family: Orbitron;
+			letter-spacing: 7px;
+		}
+		.Date{
+			position: absolute;
+			color: red;
+			top: 35%;
+			left: 50%;
+			transform: translate(-50%, -50%); //moves the element up and to the left by half of its own width and height
+			font-family: Orbitron;
+			letter-spacing: 7px;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="CurrentDate" class="Date"></div>
+	<div id="DigitalClock" class="Clock"></div>
+
+	<script type="text/javascript">
+		function showTime(){
+		var date=new Date(); //provides current date with time
+		var h=date.getHours();
+		var m=date.getMinutes();
+		var s=date.getSeconds();
+		var session="AM";
+
+		if(h==0){
+			h=12; //shows 12 hours format
+		}
+		if(h>12){
+			h=h-12; //shows 12 hours format
+			session="PM";
+		}
+
+		/*if(h<10){//0-9
+			h="0"+h;
+		}
+		if(m<10){
+			m="0"+m;
+		}
+		if(s<10){
+			s="0"+s;
+		}*/
+
+		h=(h<10)?"0"+h:h;
+		m=(m<10)?"0"+m:m;
+		s=(s<10)?"0"+s:s;
+
+		document.getElementById("DigitalClock").innerHTML= h + ":" + m + ":" + s + " " + session;
+
+		var currentDate = date.toDateString();
+			document.getElementById("CurrentDate").innerHTML = currentDate;
+
+		setTimeout(showTime, 1000);
+	}
+	showTime();
+	</script>
+</body>
+</html>
